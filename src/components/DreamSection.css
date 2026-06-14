@@ -1,0 +1,450 @@
+/* DreamSection Stylesheet - Nüma Brand Philosophy */
+
+.dream-section-container {
+  position: relative;
+  background-color: #16100e; /* Slightly warmer than hero background for gentle progression */
+  color: var(--color-cream);
+  padding: 160px 8% 160px 8%;
+  overflow: hidden;
+  z-index: 10;
+  width: 100%;
+}
+
+/* Light leaks and film grain */
+.dream-bg-leak {
+  position: absolute;
+  top: 15%;
+  right: -10%;
+  width: 70vw;
+  height: 70vw;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.04) 0%, rgba(82, 103, 71, 0.02) 50%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dream-film-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.022;
+  z-index: 3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.dream-botanical-shadows {
+  position: absolute;
+  bottom: -5%;
+  left: -5%;
+  width: 50%;
+  height: 70%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,90 Q30,60 50,70 T90,30 Q70,50 60,80 Z' fill='rgba(82,103,71,0.05)'/%3E%3Cpath d='M30,95 Q50,45 80,60 T95,15 Q65,45 45,80 Z' fill='rgba(82,103,71,0.035)'/%3E%3C/svg%3E");
+  background-size: cover;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(12px);
+  transform-origin: bottom left;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Watermark typography */
+.dream-ghost-typography {
+  position: absolute;
+  top: 10%;
+  left: 2%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  opacity: 0.015;
+}
+
+.dream-ghost-text {
+  font-family: var(--font-serif);
+  font-size: 16vw;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: var(--color-cream);
+  line-height: 0.8;
+}
+
+/* Dynamic SVG Dream Line */
+.dream-section-line-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.dream-line-glow {
+  opacity: 0.45;
+  filter: blur(6px);
+}
+
+.dream-line-path {
+  opacity: 0.85;
+}
+
+/* Grid Layout */
+.dream-split-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 10%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+}
+
+/* Left Editorial Sticky Column */
+.dream-sticky-col {
+  position: sticky;
+  top: 120px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.dream-reveal-label {
+  margin-bottom: 24px;
+}
+
+.dream-label-tag {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--color-gold);
+}
+
+.dream-headline {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-cream);
+  margin-bottom: 35px;
+}
+
+.headline-line {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  height: 1.2em;
+}
+
+.dream-word {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+.dream-paragraph {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--color-cream-dim);
+  max-width: 440px;
+  margin-bottom: 40px;
+}
+
+/* Quote Box styling */
+.dream-quote-box {
+  position: relative;
+  padding-left: 28px;
+  max-width: 380px;
+}
+
+.quote-indicator {
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 1px;
+  height: calc(100% - 8px);
+  background: linear-gradient(to bottom, var(--color-gold) 0%, transparent 100%);
+}
+
+.quote-text {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--color-gold);
+}
+
+/* Right Column: Cards Stack */
+.dream-cards-col {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  padding-top: 50px;
+}
+
+/* Individual Dream Cards */
+.dream-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 420px;
+}
+
+.dream-card-img-wrapper {
+  position: relative;
+  width: 72%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(251, 249, 245, 0.06);
+}
+
+.dream-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  filter: saturate(0.85) brightness(0.8);
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), filter 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Specific card image color tint filters */
+.dream-card-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: color;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.overlay-nature {
+  background-color: var(--color-olive-light);
+}
+
+.overlay-coffee {
+  background-color: #8b5a2b; /* Rich roasted amber */
+}
+
+.overlay-kitchen {
+  background-color: var(--color-gold);
+}
+
+.dream-card-ambient-shadow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(18, 13, 11, 0.8) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Overlapping Glass Panel */
+.dream-card-glass-panel {
+  position: absolute;
+  right: 0;
+  width: 46%;
+  padding: 40px 35px;
+  background: rgba(30, 22, 19, 0.45);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  transform: translateX(-5%);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Luxury Corner Indents */
+.card-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid transparent;
+  pointer-events: none;
+  opacity: 0.55;
+  transition: border-color 0.5s, opacity 0.5s;
+}
+
+.card-corner.top-left {
+  top: 8px;
+  left: 8px;
+  border-top-color: var(--color-gold);
+  border-left-color: var(--color-gold);
+}
+
+.card-corner.bottom-right {
+  bottom: 8px;
+  right: 8px;
+  border-bottom-color: var(--color-gold);
+  border-right-color: var(--color-gold);
+}
+
+.card-index {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: var(--color-gold);
+  margin-bottom: 15px;
+  opacity: 0.7;
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  color: var(--color-cream);
+  margin-bottom: 15px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.card-desc {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--color-cream-dim);
+}
+
+.card-glow-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(to right, transparent 0%, var(--color-gold) 50%, transparent 100%);
+  opacity: 0;
+  transform: scaleX(0.7);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card Hover Interactions */
+.dream-card:hover .dream-card-image {
+  transform: scale(1.08);
+  filter: saturate(1.0) brightness(0.9);
+}
+
+.dream-card:hover .dream-card-glass-panel {
+  background: rgba(38, 28, 23, 0.55);
+  border-color: rgba(212, 175, 55, 0.25);
+  box-shadow: 0 35px 65px rgba(0, 0, 0, 0.55);
+  transform: translateX(-5%) translateY(-5px);
+}
+
+.dream-card:hover .card-corner {
+  opacity: 1;
+}
+
+.dream-card:hover .card-glow-indicator {
+  opacity: 0.75;
+  transform: scaleX(1);
+}
+
+/* Responsive Styles */
+
+@media (max-width: 1024px) {
+  .dream-split-grid {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+
+  .dream-sticky-col {
+    position: relative;
+    top: 0;
+    max-width: 100%;
+  }
+
+  .dream-paragraph {
+    max-width: 600px;
+  }
+
+  .dream-cards-col {
+    gap: 80px;
+    padding-top: 0;
+  }
+
+  .dream-card {
+    height: 380px;
+  }
+
+  .dream-card-img-wrapper {
+    width: 68%;
+  }
+
+  .dream-card-glass-panel {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .dream-section-container {
+    padding: 100px 6% 100px 6%;
+  }
+
+  .dream-headline {
+    font-size: 3rem;
+  }
+
+  .dream-card {
+    flex-direction: column;
+    height: auto;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .dream-card-img-wrapper {
+    width: 100%;
+    height: 280px;
+  }
+
+  .dream-card-glass-panel {
+    position: relative;
+    width: 100%;
+    transform: none;
+    margin-top: -40px;
+    margin-left: 5%;
+    width: 90%;
+  }
+
+  .dream-card:hover .dream-card-glass-panel {
+    transform: translateY(-5px);
+  }
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .dream-word {
+    transform: none !important;
+  }
+  .dream-reveal-label,
+  .dream-reveal-desc,
+  .dream-reveal-quote,
+  .dream-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .dream-card-image {
+    transition: none !important;
+    transform: scale(1) !important;
+  }
+  .dream-card-glass-panel {
+    transition: none !important;
+  }
+}
