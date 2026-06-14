@@ -6,6 +6,7 @@ export default function HeroSection() {
   const sectionRef = useRef(null);
   const videoRef = useRef(null);
   const pathRef = useRef(null);
+  const pathGlowRef = useRef(null);
   const headlineRef = useRef(null);
   const infoPanelRef = useRef(null);
   const shadowsRef = useRef(null);
@@ -29,7 +30,7 @@ export default function HeroSection() {
           y: 0,
           scale: 1
         });
-        gsap.set(pathRef.current, { strokeDashoffset: 0 });
+        gsap.set([pathRef.current, pathGlowRef.current], { strokeDashoffset: 0 });
         gsap.set(videoRef.current, { opacity: 0.45, scale: 1 });
         return;
       }
@@ -45,7 +46,7 @@ export default function HeroSection() {
         scale: 0.95,
         y: 25
       });
-      gsap.set(pathRef.current, {
+      gsap.set([pathRef.current, pathGlowRef.current], {
         strokeDashoffset: 2000
       });
       gsap.set(videoRef.current, {
@@ -104,7 +105,7 @@ export default function HeroSection() {
         ease: 'elastic.out(1, 0.85)'
       }, 1.3);
 
-      tl.to(pathRef.current, {
+      tl.to([pathRef.current, pathGlowRef.current], {
         strokeDashoffset: 0,
         duration: 3.2,
         ease: 'power3.inOut'
@@ -166,6 +167,9 @@ export default function HeroSection() {
       
       if (pathRef.current) {
         pathRef.current.setAttribute('d', pathString);
+      }
+      if (pathGlowRef.current) {
+        pathGlowRef.current.setAttribute('d', pathString);
       }
 
       animId = requestAnimationFrame(animateLine);
@@ -270,6 +274,8 @@ export default function HeroSection() {
           <source src="/assets/numa-hero-video.mp4" type="video/mp4" />
         </video>
         <div className="hero-video-overlay"></div>
+        <div className="hero-light-leak"></div>
+        <div className="hero-film-grain"></div>
         <div ref={shadowsRef} className="hero-botanical-shadows"></div>
       </div>
 
@@ -283,6 +289,14 @@ export default function HeroSection() {
       {/* Signature Organic Dream Line */}
       <svg className="dream-line-svg" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
         <path 
+          ref={pathGlowRef}
+          className="dream-line-glow" 
+          d="M1440,800 C1100,750 950,500 700,450 C450,400 300,600 0,500" 
+          fill="none" 
+          stroke="url(#dream-line-gradient-glow)" 
+          strokeWidth="8" 
+        />
+        <path 
           ref={pathRef}
           className="dream-line-path" 
           d="M1440,800 C1100,750 950,500 700,450 C450,400 300,600 0,500" 
@@ -293,8 +307,13 @@ export default function HeroSection() {
         <defs>
           <linearGradient id="dream-line-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="var(--color-olive)" stopOpacity="0.2" />
-            <stop offset="50%" stopColor="var(--color-gold)" stopOpacity="0.8" />
+            <stop offset="50%" stopColor="var(--color-gold)" stopOpacity="0.85" />
             <stop offset="100%" stopColor="var(--color-olive-light)" stopOpacity="0.1" />
+          </linearGradient>
+          <linearGradient id="dream-line-gradient-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="var(--color-olive)" stopOpacity="0.0" />
+            <stop offset="50%" stopColor="var(--color-gold)" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="var(--color-olive-light)" stopOpacity="0.0" />
           </linearGradient>
         </defs>
       </svg>
@@ -328,6 +347,7 @@ export default function HeroSection() {
             </a>
             <a href="#menu" className="cta-btn cta-secondary">
               <span className="btn-text">Explore the Menu</span>
+              <svg className="cta-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
           </div>
         </div>

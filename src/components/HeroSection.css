@@ -98,11 +98,22 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--color-gold);
+  color: var(--color-gold) !important;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 0.4rem 1rem !important;
+  margin-top: -0.4rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .instagram-icon {
-  transition: transform 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link-social:hover {
+  border-color: var(--color-gold);
+  background-color: rgba(212, 175, 55, 0.05);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+  transform: translateY(-1px);
 }
 
 .nav-link-social:hover .instagram-icon {
@@ -137,14 +148,48 @@
   left: 0;
   width: 100%;
   height: 100%;
+  /* Warm espresso/amber gradient, letting right side be slightly brighter */
   background: linear-gradient(
     135deg,
-    rgba(18, 13, 11, 0.97) 0%,
-    rgba(18, 13, 11, 0.88) 45%,
-    rgba(45, 58, 38, 0.4) 100%
+    rgba(18, 13, 11, 0.96) 0%,
+    rgba(18, 13, 11, 0.76) 40%,
+    rgba(38, 28, 23, 0.45) 75%,
+    rgba(45, 58, 38, 0.15) 100%
   );
   z-index: 2;
-  backdrop-filter: blur(1px) contrast(1.05);
+  backdrop-filter: blur(0.5px) contrast(1.02);
+}
+
+.hero-light-leak {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.12) 0%, rgba(38, 28, 23, 0) 65%);
+  pointer-events: none;
+  z-index: 3;
+  mix-blend-mode: screen;
+  animation: lightLeakShift 22s infinite alternate ease-in-out;
+}
+
+.hero-film-grain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.025; /* Subtle premium film texture */
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes lightLeakShift {
+  0% { opacity: 0.6; transform: scale(1) translate(0px, 0px); }
+  50% { opacity: 0.85; transform: scale(1.15) translate(-40px, 30px); }
+  100% { opacity: 0.5; transform: scale(0.95) translate(30px, -20px); }
 }
 
 /* Drifting Botanical Shadows overlay */
@@ -225,8 +270,16 @@
   mix-blend-mode: screen;
 }
 
+.dream-line-glow {
+  filter: blur(8px);
+  opacity: 0.5;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  will-change: d, stroke-dashoffset;
+}
+
 .dream-line-path {
-  filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4)) drop-shadow(0 0 20px rgba(82, 103, 71, 0.2));
+  filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.5));
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000; /* Animated in React */
   will-change: d, stroke-dashoffset;
@@ -275,6 +328,7 @@
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
+  text-shadow: 0 4px 24px rgba(18, 13, 11, 0.4), 0 0 50px rgba(212, 175, 55, 0.04);
 }
 
 .headline-line {
@@ -377,7 +431,7 @@
   border-color: var(--color-gold);
   color: var(--color-espresso);
   background-color: var(--color-cream);
-  box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25), 0 0 40px rgba(251, 249, 245, 0.1);
   transform: translateY(-2px);
 }
 
@@ -396,6 +450,23 @@
   color: var(--color-cream-dim);
   border: none;
   padding: 1.1rem 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.cta-arrow {
+  margin-left: 0.5rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-secondary:hover {
+  color: var(--color-cream);
+  text-shadow: 0 0 10px rgba(251, 249, 245, 0.25);
+}
+
+.cta-secondary:hover .cta-arrow {
+  transform: translateX(5px);
+  color: var(--color-gold);
 }
 
 .cta-secondary::after {
@@ -409,11 +480,6 @@
   transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.cta-secondary:hover {
-  color: var(--color-cream);
-  text-shadow: 0 0 10px rgba(251, 249, 245, 0.25);
-}
-
 .cta-secondary:hover::after {
   width: 100%;
 }
@@ -425,24 +491,28 @@
 }
 
 .info-panel-glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 30px 60px var(--glass-shadow);
+  /* Warm translucent brown background */
+  background: rgba(38, 28, 23, 0.42);
+  /* Increased glass depth blur */
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(251, 249, 245, 0.14);
+  /* Soft inner shadow + drop shadow */
+  box-shadow: inset 0 0 35px rgba(251, 249, 245, 0.04), 0 30px 60px var(--glass-shadow);
   padding: 3rem;
   width: 380px;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  gap: 2.2rem; /* Enhanced editorial spacing */
+  transition: box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
   will-change: transform;
 }
 
 .info-panel-glass:hover {
-  border-color: rgba(212, 175, 55, 0.3);
-  box-shadow: 0 40px 70px rgba(0, 0, 0, 0.5), 0 0 30px rgba(45, 58, 38, 0.15);
+  background: rgba(38, 28, 23, 0.48);
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: inset 0 0 35px rgba(251, 249, 245, 0.06), 0 40px 70px rgba(0, 0, 0, 0.55), 0 0 30px rgba(212, 175, 55, 0.15);
 }
 
 /* Botanical Corners */
