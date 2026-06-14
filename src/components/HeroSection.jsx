@@ -357,7 +357,7 @@ export default function HeroSection() {
               <span className="info-label">SIGNATURES</span>
               <div className="signature-chips">
                 <span className="chip">Coffee</span>
-                <span class="chip">Brunch</span>
+                <span className="chip">Brunch</span>
                 <span className="chip">Dessert</span>
                 <span className="chip">Kitchen</span>
               </div>
