@@ -4,6 +4,7 @@ import DreamSection from './components/DreamSection';
 import SignatureMenuSection from './components/SignatureMenuSection';
 import './App.css';
 
+// Deployed & Verified Live: June 15, 2026
 function App() {
   return (
     <>
